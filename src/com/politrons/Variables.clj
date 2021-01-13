@@ -1,7 +1,5 @@
-(ns com.politrons.Variables
-  ; In Clojure you can import as required in your namespace the namespace you want to use
-  ; and give them an alias using [:as]
-  (:require [clojure.string :as str]))
+(ns com.politrons.Variables)
+; All invocations of Clojure must be inside ()
 
 ; Def
 ;--------
@@ -26,8 +24,9 @@
 ; In case you just want to create variables with a reduced scope to be used only in some computations,
 ; you can use [let]  and all variables created inside only can be used in the context of the let
 (let [words ["Hello" "Variables" "in" "Clojure"]
+      ; This variable is only defined inside the scope of [let]
       my-index 1
       word (get words my-index)]
   (println "selected word:" word "....."))
 
-
+;(println my-index) //It wont compile since is not visible form outside
