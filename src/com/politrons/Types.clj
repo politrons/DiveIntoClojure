@@ -3,33 +3,13 @@
   ; and give them an alias using [:as]
   (:require [clojure.string :as str]))
 
-
-; Types & Variables
-; ------------------
-
-; In Clojure you can define variables in your namespace using [def] in each place, and it will be consider as global variable
-; Global variable
-(def my-name "Politrons")
-
-; List
-;--------
-; List API from namespace [clojure.list] it contains all typical operators of list type
-(defn use-and-define-global-variable []
-  ; We can also define a global variable inside a function
-  (def innerGlobalVariable "global variable created inside function")
-  )
-
-(println my-name)
-
-(use-and-define-global-variable)
-
-(println innerGlobalVariable)
-
 ; String
 ;--------
 ; String API from namespace [clojure.string] it contains all typical operators of string type
 (defn string-features [myParam]
   (println (clojure.string/includes? myParam "hello"))
+  ; We can also use the string API of Java
+  (println (.toUpperCase myParam))
   (println (str/blank? myParam))
   (println (str/ends-with? myParam "world"))
   (println (str/replace myParam "hello" "bye"))
