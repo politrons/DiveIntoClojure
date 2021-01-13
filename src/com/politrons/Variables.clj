@@ -1,5 +1,5 @@
 (ns com.politrons.Variables)
-; All invocations of Clojure must be inside ()
+; All computations in Clojure must be inside ()
 
 ; Def
 ;--------
@@ -22,7 +22,7 @@
 ; Let
 ;--------
 ; In case you just want to create variables with a reduced scope to be used only in some computations,
-; you can use [let]  and all variables created inside only can be used in the context of the let
+; you can use [let [variables]]  and all variables created inside only can be used in the context of the let
 (let [words ["Hello" "Variables" "in" "Clojure"]
       ; This variable is only defined inside the scope of [let]
       my-index 1
@@ -30,3 +30,13 @@
   (println "selected word:" word "....."))
 
 ;(println my-index) //It wont compile since is not visible form outside
+
+; Inside a defn you can define your [let] section and only inside this computation ()
+; the variables define will be able to be used.
+(defn local-variables-with-let []
+  (let [my-local-variable "local value"]
+    (println my-local-variable))
+  )
+(local-variables-with-let)
+
+;(println my-my-local-variable) //It wont compile since is not visible form outside
