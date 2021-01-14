@@ -18,8 +18,8 @@
 ; the body of the function (body)
 (println ((fn [message] (clojure.string/upper-case message)) "Hello functional world"))
 
-;[Higher order function]
-;-------------------------
+; [Higher order function]
+; -------------------------
 ; Like in all functional language higher order functions are functions that receive or return a function
 ; In this example append [appendCharacterFunc] return a function that append two strings
 (defn appendCharacterFunc [] (fn [message, character] (str message character)))
