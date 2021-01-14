@@ -21,12 +21,16 @@
 
 ; List
 ;--------
+
 ; List API from namespace [clojure.list] it contains all typical operators of list type
-(defn list-features [& myParam]
-  ; We can also define a global variable inside a function
-  (def myList (list myParam))
-  myList
-  )
+; In Clojure in order to receive n elements you must use [& elements]
+; something similar as in Java with [...] and must be the last argument of the function
+(defn list-features [& elements]
+  (def myList (list elements))
+  (map myList))
+
+(println "return list:" (list-features 1, 2, 3, 4, 5))
+
 
 (println (list-features 1, 2, 3, 4))
 
