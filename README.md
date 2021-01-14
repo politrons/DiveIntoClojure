@@ -6,7 +6,8 @@ Clojure is a dialect of Lisp, and is predominantly a functional programming lang
 
 Here we cover with examples the most important features of the language.
 
-# ![alt text](img/features.jpg) 
+
+![alt text](img/features.jpg) 
 ## Features
 
 **[Variables](src/com/politrons/Variables.clj)**
