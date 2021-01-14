@@ -1,7 +1,7 @@
 (ns com.politrons.Variables)
 ; All computations in Clojure must be inside ()
 
-; Def
+; [Def]
 ;--------
 ; In Clojure you can define variables in your namespace using [def] in each place,
 ; and it will be consider as global variable Global variable
@@ -19,7 +19,7 @@
 
 (println innerGlobalVariable)
 
-; Let
+; [Let]
 ;--------
 ; In case you just want to create variables with a reduced scope to be used only in some computations,
 ; you can use [let [variables]]  and all variables created inside only can be used in the context of the let

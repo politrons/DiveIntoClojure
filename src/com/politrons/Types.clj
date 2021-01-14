@@ -3,35 +3,81 @@
   ; and give them an alias using [:as]
   (:require [clojure.string :as str]))
 
-; String
+; Primitive types
+;-----------------
+;By default Clojure put a numeric value into a long, in case you want to specify the type you still can
+; adding (type value)
+;Int
+;-----
+(def integer-type (int 10))
+(println integer-type)
+(println (type integer-type))
+
+;Long
+;-----
+(def long-type 1981)
+(println long-type)
+(println (type long-type))
+
+;Double
 ;--------
+(def double-type 10.1)
+(println double-type)
+(println (type double-type))
+
+;Boolean
+;--------
+(def boolean-type true)
+(println boolean-type)
+(println (type boolean-type))
+
+;String
+;-------
 ; String API from namespace [clojure.string] it contains all typical operators of string type
-(defn string-features [myParam]
-  (println (clojure.string/includes? myParam "hello"))
+(defn string-features [my-param]
+  (println (clojure.string/includes? my-param "hello"))
   ; We can also use the string API of Java
-  (println (.toUpperCase myParam))
-  (println (str/blank? myParam))
-  (println (str/ends-with? myParam "world"))
-  (println (str/replace myParam "hello" "bye"))
-  (println (str/split myParam #" "))
-  (println (str/trim myParam))
+  (println (.toUpperCase my-param))
+  (println (str/blank? my-param))
+  (println (str/ends-with? my-param "world"))
+  (println (str/replace my-param "hello" "bye"))
+  (println (str/split my-param #" "))
+  (println (str/trim my-param))
   )
 
 (string-features "hello world")
 
 ; List
 ;--------
-
-; List API from namespace [clojure.list] it contains all typical operators of list type
 ; In Clojure in order to receive n elements you must use [& elements]
 ; something similar as in Java with [...] and must be the last argument of the function
 (defn list-features [& elements]
   (def myList (list elements))
-  (map myList))
+  myList)
 
 (println "return list:" (list-features 1, 2, 3, 4, 5))
 
+; Map
+;--------
+(defn x (struct-map myMap
+          :1 "value1"
+          :2 "value2"))
 
-(println (list-features 1, 2, 3, 4))
+(println "Map value:" (accessor myMap :1))
 
+;  Casting
+;-----------
+; You can always cast a value from one type to other just specify the type when you set in a new variable.
+; As we can see in this example, we are casting from double to integer, so once we adjust the value to int type,
+; we lost the float point.
+(def float-number 10.1)
+(println (type float-number))
+(def integer-number (int float-number))
+(println "Double to Integer" (type integer-number))
+(println "Integer value" integer-number)
+
+;Same happens with numeric values into string, obviously it cannot be done in the other way around.
+(def number-to-string 1981)
+(def string-number (str number-to-string))
+(println "String value" string-number)
 
