@@ -49,13 +49,18 @@
 
 ; List
 ;--------
-; In Clojure in order to receive n elements you must use [& elements]
-; something similar as in Java with [...] and must be the last argument of the function
-(defn list-features [& elements]
-  (def myList (list elements))
-  myList)
+; To create a list in clojure, you just need to use [list] keyboard and then the number of elements of the list
+(defn my-list [] (list "hello" "clojure" "collection"))
+(println "Collection:" my-list)
 
-(println "return list:" (list-features 1, 2, 3, 4, 5))
+; To obtain the number of elements in collection, we just need to use [count]
+(println "Number of elements in collection:" (count (my-list)))
+
+; To iterate and apply some actions over collection we can use [doseq] where in body we
+; can do some actions
+(def words ["a" "b" "c"])
+(doseq [item words]
+  (println (str/upper-case item) ))
 
 ; Map
 ;--------
