@@ -59,11 +59,17 @@
 
 ; Map
 ;--------
-(defn x (struct-map myMap
-          :1 "value1"
-          :2 "value2"))
+; In order to create map in Clojure is just so simple like define a structure with { :key value} where [:]
+; are used to define keys
+(def my-map {:key1 "politrons" :key2 1981 :foo 10.0})
 
-(println "Map value:" (accessor myMap :1))
+(println "MyMap:" my-map)
+;You can access the value of the map using directly the key value
+(println "Map value:" (my-map :key1))
+
+;Or you can access through a variable using [keyword] before the variable
+(def my-key "key1")
+(println "Map value through variable:" (my-map (keyword my-key)))
 
 ;  Casting
 ;-----------
