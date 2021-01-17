@@ -30,13 +30,42 @@
 
 (println (apply-function-with-name (fn [name] (str/upper-case name))))
 
+; [Filters]
+; -----------
 ; With Clojure we can have predicate functions like [filter] where we have to pass the anonymous function/lambda
 ; and then the collection in this example
 (def result (filter (fn [word]
                       (or (= word "politrons") (= word "functional")))
                     ["hello" "politrons" "welcome" "to" "functional" "lisp" ""]))
-
-
 (println result)
 
+; [Take] operator just take number of the elements of the array we want to extract from the array, to create a new one.
+(def take-result (take 2 ["hello" "politrons" "welcome" "to" "functional" "lisp" ""]))
+(println take-result)
 
+; [Drop] operator the antagonist of take, remove number of the elements of the array and create a new one
+; with the rest of the elements that remains.
+(def drop-result (drop 4 ["hello" "politrons" "welcome" "to" "functional" "lisp" ""]))
+(println drop-result)
+
+; [take-while] function get a predicate function as argument to filter the number of elements to combine the new array until
+; the predicate functions happens
+(def take-while-result (take-while (fn [word] (> (count word) 4)) ["hello" "politrons" "welcome" "to" "functional" "lisp" ""]))
+(println take-while-result)
+
+; [Transformation]
+; -----------------
+; [map] function get a functions that pass each element of the array and transform into a new element [A => B]
+(def map-result (map (fn [word] (str/upper-case word)) ["hello" "politrons" "welcome" "to" "functional" "lisp" ""]))
+(println map-result)
+
+(def flat-map-result (mapcat (fn [word] (str/upper-case word )) ["hello" "politrons" "welcome" "to" "functional" "lisp" ""]))
+(println map-result)
+
+; [Merge] operator get collections like map and merge all elements in just one map.
+; in case one of the keys previously exist it will remain the one in the right definition.
+(def merge-result (merge {:1 "hello"} {:2 "functional"} {:3 "world"} {:2 "clojure"}))
+(println merge-result)
+
+(def merge-list-result (merge ["hello"] ["functional"] ["world"] ["again"] ))
+(println merge-list-result)
