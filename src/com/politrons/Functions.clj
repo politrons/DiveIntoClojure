@@ -85,3 +85,18 @@
 (println (comparator-func 10 20))
 (println (comparator-func 20 20))
 (println (comparator-func 30 20))
+
+; [sort] function just get an array and sort it
+(def sort-result (sort [40,13,1,5,3,8,6]))
+(println sort-result)
+
+; [Interval]
+; -----------
+; [cycle] operator repeat to infinitive the elements of the array
+(def cycle-result (cycle [1,2,3]))
+;(println cycle-result) // if you uncomment it will never end
+
+; [repeat] operator allow you to repeat a sequence of array a specific number of times if you
+; specify, or forever if you don't
+(def repeat-result (repeat 3 [1,2,3,4,5]))
+(println repeat-result)
