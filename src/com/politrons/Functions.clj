@@ -76,4 +76,12 @@
 (println zipmap-result)
 (println (zipmap-result 1))
 
-
+; [Comparators]
+; -----------------
+; [comparator] function receive a predicate function, and return a comparator function to apply
+; passing two arguments, and return 1, 0, -1 if is lower, equal or higher
+(def comparator-func (comparator (fn [a b] (> a b))))
+(println comparator-func)
+(println (comparator-func 10 20))
+(println (comparator-func 20 20))
+(println (comparator-func 30 20))
