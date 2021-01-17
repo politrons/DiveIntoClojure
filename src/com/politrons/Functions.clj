@@ -26,6 +26,8 @@
 
 (println ((appendCharacterFunc) "Politrons" "!!"))
 
+;And in this example, we receive a function as argument and we invoke the function inside the body of the
+; other function
 (defn apply-function-with-name [name-in-upper-case-function] (name-in-upper-case-function "politrons"))
 
 (println (apply-function-with-name (fn [name] (str/upper-case name))))
@@ -59,13 +61,19 @@
 (def map-result (map (fn [word] (str/upper-case word)) ["hello" "politrons" "welcome" "to" "functional" "lisp" ""]))
 (println map-result)
 
-(def flat-map-result (mapcat (fn [word] (str/upper-case word )) ["hello" "politrons" "welcome" "to" "functional" "lisp" ""]))
-(println map-result)
+; [mapcat] Behave just like [flatMap] in other functional languages like Scala, it meant to be used for composition,
+; where in each iteration of the list, we can compose with another collection, and then flat all output elements together.
+(def flat-map-result (mapcat (fn [word] (conj ["-"] word)) ["hello" "politrons" "welcome" "to" "functional" "lisp" ""]))
+(println flat-map-result)
 
 ; [Merge] operator get collections like map and merge all elements in just one map.
 ; in case one of the keys previously exist it will remain the one in the right definition.
 (def merge-result (merge {:1 "hello"} {:2 "functional"} {:3 "world"} {:2 "clojure"}))
 (println merge-result)
 
-(def merge-list-result (merge ["hello"] ["functional"] ["world"] ["again"] ))
-(println merge-list-result)
+; [zipmap] is a handy operator to get two arrays and set each elements of the arrays as key-values
+(def zipmap-result (zipmap [1 2 3 4] ["hello" "functional" "world" "again"]))
+(println zipmap-result)
+(println (zipmap-result 1))
+
+
