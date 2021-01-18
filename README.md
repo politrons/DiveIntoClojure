@@ -15,3 +15,5 @@ Here we cover with examples the most important features of the language.
 **[Types](src/com/politrons/Types.clj)**
 
 **[Functions](src/com/politrons/Functions.clj)**
+
+**[Pipelines](src/com/politrons/Pipelines.clj)**
