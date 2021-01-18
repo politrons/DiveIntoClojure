@@ -103,7 +103,9 @@
                      [1 2 3 4]))
 (println "Reduce:" reduce-result)
 
-(require '[clojure.core.reducers :as r] '[clojure.string :as s])
+; In case you pass a value as second argument, it will be the initial value to start the [accumulator]
+(def reduce-val-result (reduce (fn [acc next] (+ acc next)) 100 [1 2 3 4]))
+(println "Reduce-val:" reduce-val-result)
 
 ; [Interval]
 ; -----------
