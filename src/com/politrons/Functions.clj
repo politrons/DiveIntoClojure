@@ -87,16 +87,32 @@
 (println (comparator-func 30 20))
 
 ; [sort] function just get an array and sort it
-(def sort-result (sort [40,13,1,5,3,8,6]))
+(def sort-result (sort [40, 13, 1, 5, 3, 8, 6]))
 (println sort-result)
+
+; [Reduce/Fold]
+; -----------
+; [Reduce] operator receive a function where it receive two arguments the [accumulator] and the [next] iteration
+; value of the collection. Finally it return the [accumulator]
+(def reduce-result (reduce
+                     (fn [acc next]
+                       (println "Acc:" acc)
+                       (println "Next:" next)
+                       (+ acc next)
+                       )
+                     [1 2 3 4]))
+(println "Reduce:" reduce-result)
+
+(require '[clojure.core.reducers :as r] '[clojure.string :as s])
 
 ; [Interval]
 ; -----------
 ; [cycle] operator repeat to infinitive the elements of the array
-(def cycle-result (cycle [1,2,3]))
+(def cycle-result (cycle [1, 2, 3]))
 ;(println cycle-result) // if you uncomment it will never end
 
 ; [repeat] operator allow you to repeat a sequence of array a specific number of times if you
 ; specify, or forever if you don't
-(def repeat-result (repeat 3 [1,2,3,4,5]))
+(def repeat-result (repeat 3 [1, 2, 3, 4, 5]))
 (println repeat-result)
+
