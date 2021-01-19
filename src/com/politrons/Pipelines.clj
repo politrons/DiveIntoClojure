@@ -43,3 +43,21 @@
                                    ))
 (println "Pipeline-flat-map:" pipeline-flat-map-filter)
 
+(definterface IHuman
+  (getName [])
+  (getAge [])
+  (getSex [])
+  )
+
+(deftype Human [name age sex]
+  IHuman
+  (getName [this] name)
+  (getAge [this] age)
+  (getSex [this] sex)
+  )
+
+(def p (Human. "Politron" 39 "male"))
+
+;(def pipeline-deftype (->> (Human. "Politron" 39 "male")
+;                           (map (fn [human] (Human. "" 39 "")))
+;                           ))

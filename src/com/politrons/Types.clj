@@ -60,7 +60,7 @@
 ; can do some actions
 (def words ["a" "b" "c"])
 (doseq [item words]
-  (println (str/upper-case item) ))
+  (println (str/upper-case item)))
 
 ; Map
 ;--------
@@ -75,6 +75,40 @@
 ;Or you can access through a variable using [keyword] before the variable
 (def my-key "key1")
 (println "Map value through variable:" (my-map (keyword my-key)))
+
+
+; DefTypes
+;------------
+; [Deftype] is the way we can create data structures in Clojure. Just like in other languages, we have to define
+; [name] of the type, and then the attributes.
+
+; If we want to expose some fields of the Data type we need to create an interface and then define there
+; the function we will like to expose
+(definterface IHuman
+  (getName [])
+  (getAge [])
+  (getSex [])
+  )
+
+; The we define the data type, and after define name and fields, we specify the interface, and after that the
+; implementations of this interface.
+; We can also override classes methods like [toString] [hashCode] once we set [Object] inside the data type.
+(deftype Human [name age sex]
+  IHuman
+  (getName [this] name)
+  (getAge [this] age)
+  (getSex [this] sex)
+  Object
+  (toString [this] (str name "-" age "-" sex))
+  )
+
+; To create an instance we just need to type the deftype [name] together with [.] and then the fields.
+(def human (Human. "Politron" 39 "male"))
+
+; Once we have the instance, we can invoke the function  defined in the interface by [.] function name and then pass
+; the instance of the defType
+(println "Human:" (.getName human) " " (.getAge human) " " (.getSex human))
+(println "Human:" (.toString human))
 
 ;  Casting
 ;-----------
