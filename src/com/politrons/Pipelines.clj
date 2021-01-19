@@ -1,4 +1,8 @@
 (ns com.politrons.Pipelines
+  (:use [com.politrons.Types]
+        :reload-all)
+  ;To import defTypes from Types namespace
+  (:import [com.politrons.Types Human])
   (:require [clojure.string :as str]))
 
 (defn upper-case-func [] (fn [word] (str/upper-case word)))
@@ -39,25 +43,13 @@
 ; If we want to make composition with another array, we can use [mapcat] in the pipeline.
 (def pipeline-flat-map-filter (->> ["hello" "politrons" "welcome" "to" "functional" "lisp" ""]
                                    (map (upper-case-func))
-                                   (mapcat (fn [word] (conj ["$$$"] word) ))
+                                   (mapcat (fn [word] (conj ["$$$"] word)))
                                    ))
 (println "Pipeline-flat-map:" pipeline-flat-map-filter)
 
-(definterface IHuman
-  (getName [])
-  (getAge [])
-  (getSex [])
-  )
-
-(deftype Human [name age sex]
-  IHuman
-  (getName [this] name)
-  (getAge [this] age)
-  (getSex [this] sex)
-  )
-
-(def p (Human. "Politron" 39 "male"))
-
-;(def pipeline-deftype (->> (Human. "Politron" 39 "male")
-;                           (map (fn [human] (Human. "" 39 "")))
-;                           ))
+; Apart from primitive types, we can also add into array data types to transform, filter
+(def pipeline-deftype (->> [(Human. "Politron" 39 "male")]
+                           (map (fn [human] (Human. (str/upper-case (str (.getName human))) 40 (.getSex human))))
+                           (filter (fn [human] (= (str (.getName human)) "POLITRON")))
+                           ))
+(println "Pipeline-deftype:" (.toString (last pipeline-deftype)))
