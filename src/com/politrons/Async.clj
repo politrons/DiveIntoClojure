@@ -3,6 +3,8 @@
              :refer [>! <! >!! <!! go chan buffer close! thread
                      alts! alts!! take! put! timeout]]
             [clojure.string :as str])
+  (:import [java.util.concurrent ForkJoinPool
+                                 ForkJoinWorkerThread ForkJoinTask RecursiveTask])
   (:gen-class))
 
 ; Future
@@ -60,6 +62,23 @@
          (let [value (deref future-one)]
            (println "Future composition:" (str/upper-case value)))
          ))
+
+; Promise
+;----------------
+;; Using [promise] function we create a promise to be used for a future computation.
+(def my-promise (promise))
+
+;Start working on the promise in a new thread
+;then deliver on your promise using [delivery] function
+(future
+  ;Computation
+  (Thread/sleep 1000)
+  (deliver my-promise "Hello promise world")
+  )
+
+; As we saw before, using [deref] it will block if the promise did not finish yet, and once it does
+; it will extract the value
+(println "Promise response:" (deref my-promise))
 
 ; Async channel
 ;----------------
