@@ -1,6 +1,6 @@
-(ns clojure-server.core-test
+(ns clojure-server.Server-test
   (:require [clojure.test :refer :all]
-            [clojure-server.core :refer :all]))
+            [clojure-server.Server :refer :all]))
 
 (deftest a-test
   (testing "Fixed, I fail."
