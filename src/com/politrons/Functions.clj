@@ -36,10 +36,10 @@
 ; -----------
 ; With Clojure we can have predicate functions like [filter] where we have to pass the anonymous function/lambda
 ; and then the collection in this example
-(def result (filter (fn [word]
+(defn filter-function [words] (filter (fn [word]
                       (or (= word "politrons") (= word "functional")))
-                    ["hello" "politrons" "welcome" "to" "functional" "lisp" ""]))
-(println result)
+                                      words))
+(println (filter-function ["hello" "politrons" "welcome" "to" "functional" "lisp" ""]))
 
 ; [Take] operator just take number of the elements of the array we want to extract from the array, to create a new one.
 (def take-result (take 2 ["hello" "politrons" "welcome" "to" "functional" "lisp" ""]))
